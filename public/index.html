@@ -10,6 +10,8 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
     <title>Document</title>
 </head>
 
@@ -42,7 +44,7 @@
     </nav>
 
 
-<!-- List of Articles -->
+    <!-- List of Articles -->
     <div id="scrollTable">
         <nav id="navbar-example2" class="navbar navbar-light bg-light">
             <a class="navbar-brand" href="">Articles from Prevention</a>
@@ -60,47 +62,48 @@
 
     <div id="listPopup" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Prevention</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Prevention</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="scrapedArticleContent" class="articleContent"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="saveArticle" class="btn btn-primary">Save This Article</button>
+                    <button type="button" id="closeScrapedPage" class="btn btn-secondary" data-dismiss="modal">Close
+                        Without Saving</button>
+                </div>
             </div>
-            <div class="modal-body">
-              <p id="scrapedArticleContent" class="articleContent"></p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" id="saveArticle" class="btn btn-primary">Save This Article</button>
-              <button type="button" id="closeScrapedPage" class="btn btn-secondary" data-dismiss="modal">Close Without Saving</button>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
 
 
     <!-- Saved Articles -->
 
     <div id="savedPopup" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">My Saved Articles</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">My Saved Articles</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="savedArticleContent" class="articleContent"></p>
+                </div>
+                <div class="modal-footer">
+                    
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="clearAll" class="btn btn-danger" data-dismiss="modal">Clear All</button>
+                </div>
             </div>
-            <div class="modal-body">
-              <p id="savedArticleContent" class="articleContent"></p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" id="saveArticle" class="btn btn-primary">Save Changes</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close Without Saving</button>
-              <button type="button" id="clearAll" class="btn btn-danger" data-dismiss="modal">Clear All</button>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
 
 
 
@@ -119,7 +122,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"
+        integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ"
+        crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
+
 </body>
 
 </html>

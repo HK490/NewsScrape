@@ -8,7 +8,6 @@ $(document).ready(function () {
 
 
 
-
     $.get("/articles", function (data) {
 
         let url = [];
@@ -44,12 +43,21 @@ $(document).ready(function () {
             console.log(result)
         })
 
+
         $("#saveArticle").on("click", function () {
 
-            $("#savedArticleContent").append(`<p>${result}</p>`)
+
+
+            $("#savedArticleContent").append(`
+            <p id="deleteArticle"><i class="far fa-trash-alt"></i>  ${result}
+            <input type="comment" id="comment" class="form-control" placeholder="Leave Your Notes Here">
+            </p>
+            `)
+            console.log($("#deleteArticle"))
             $("#scrapedArticleContent").empty();
         })
 
+     
 
         // Nav Bar Saved Articles Popup
 
@@ -61,6 +69,13 @@ $(document).ready(function () {
             $("#savedArticleContent").empty();
             $("#savedPopup").hide();
         })
+
+        $("#savedArticleContent").attr("id")
+
+        $("#savedArticleContent").on("click", "p", function () {
+            $(this).remove();
+        })
+
 
 
 
@@ -79,7 +94,7 @@ $(document).ready(function () {
         $(".modal").hide();
         $("#scrapedArticleContent").empty();
     })
-    
+
 
 
 

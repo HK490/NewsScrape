@@ -19,9 +19,9 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-app.get("/home", function (req, res) {
-    res.sendFile(path.join(__dirname + "./public/index.html"))
-})
+// app.get("/home", function (req, res) {
+//     res.sendFile(path.join(__dirname + "./public/index.html"))
+// })
 
 
 app.get("/scraped", function (req, res) {
@@ -45,9 +45,6 @@ app.get("/scraped", function (req, res) {
         });
 
         console.log(articles)
-        // console.log(articles)
-
-        // res.send(articles)
 
         db.Article.create(articles)
             .then(function (dbarticle) {
@@ -56,11 +53,6 @@ app.get("/scraped", function (req, res) {
             .catch(function (err) {
                 console.log(err)
             });
-
-        // db.Article.create(result)
-        //     .then(function(dbArticle){
-        //         console.log(dbArticle)
-        //     })
 
         res.send("Success")
 
