@@ -15,6 +15,7 @@ $(document).ready(function () {
         // console.log(url)
         // console.log("*******************")
 
+        $("#scrapedTitle").empty();
 
         for (let i = 0; i < data.length; i++) {
             $("#scrapedTitle").append(`<p class="link">${i + 1}. ${data[i].title}</p>` + `<br>`)
@@ -25,6 +26,8 @@ $(document).ready(function () {
             // console.log("url"+url)
 
         }
+
+
 
 
 
