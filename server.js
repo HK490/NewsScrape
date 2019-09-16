@@ -4,12 +4,14 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const db = require("./models");
 const app = express();
+const path=require("path")
+
 
 const PORT = process.env.PORT || 3000;
 
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+mongoose.connect(MONGODB_URI, { useUnifiedTopology: true  ,useNewUrlParser: true });
 
 
 app.use(express.urlencoded({ extended: true }));
@@ -17,8 +19,12 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
+app.get("/home", function(req,res){
+    res.sendFile(path.join(__dirname+"./public/index.html"))
+})
 
-app.get("/articles", function (req, res) {
+
+app.get("/scraped", function (req, res) {
 
     let articles=[];
 
@@ -27,19 +33,59 @@ app.get("/articles", function (req, res) {
         const $ = cheerio.load(result.data);
         console.log("-----------------")
         
-        $(".full-item-title ").each(function (i, element) {
+        $(".full-item-title ").each(function () {
             
-            articles[i] = {
+            data = {
                 title: $(this).text(),
                 link: $(this).attr("href")
             }
 
-            articles.push(i)
+            articles.push(data)
+            
         });
 
         console.log(articles)
-        res.send(articles)
+        // console.log(articles)
+
+        // res.send(articles)
+
+        db.Article.create(articles)
+        // console.log(articles)
+        // .then(function(dbarticle){
+        //     // res.json(dbarticle)
+        //     console.log(dbarticle)
+        // })
+        // .catch(function(err){
+        //     console.log(err)
+        // })
+
+        // db.Article.create(result)
+        //     .then(function(dbArticle){
+        //         console.log(dbArticle)
+        //     })
+        
+        res.send("Success")
+        
+        
     });
+});
+
+
+app.get("/articles", function(req,res){
+    db.Article.find({})
+        .then(function(result){
+            res.json(result)
+            console.log(result)
+        });
+});
+
+app.put("articles/:id", function(req,res){
+    db.Article.update({
+        title: req.body.title,
+        link: req.body.link
+    }).then(function(result){
+        res.json(result)
+    })
 })
 
 app.listen(PORT, function () {

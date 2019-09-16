@@ -29,41 +29,78 @@
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Saved Articles</a>
+                    <a id="navSavedArticles" class="nav-link">Saved Articles</a>
                 </li>
             </ul>
 
-            <ul class="nav navbar-nav">
+            <!-- <ul class="nav navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Clear Articles</a>
+                    <a class="nav-link" href="#">???</a>
                 </li>
-            </ul>
+            </ul> -->
         </div>
     </nav>
 
 
-
+<!-- List of Articles -->
     <div id="scrollTable">
         <nav id="navbar-example2" class="navbar navbar-light bg-light">
-            <a class="navbar-brand" href="#">Articles</a>
+            <a class="navbar-brand" href="">Articles from Prevention</a>
         </nav>
         <div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
-            <h4 id="fat"></h4>
-            <p></p>
-            <h4 id="mdo"></h4>
-            <p></p>
-            <h4 id="one"></h4>
-            <p></p>
-            <h4 id="two"></h4>
-            <p></p>
-            <h4 id="three"></h4>
-            <p></p>
+            <h4 id="scrapedTitle"></h4>
+
         </div>
     </div>
 
 
 
 
+    <!-- Web Scraped Page -->
+
+    <div id="listPopup" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Prevention</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p id="scrapedArticleContent" class="articleContent"></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="saveArticle" class="btn btn-primary">Save This Article</button>
+              <button type="button" id="closeScrapedPage" class="btn btn-secondary" data-dismiss="modal">Close Without Saving</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    <!-- Saved Articles -->
+
+    <div id="savedPopup" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">My Saved Articles</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p id="savedArticleContent" class="articleContent"></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="saveArticle" class="btn btn-primary">Save Changes</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close Without Saving</button>
+              <button type="button" id="clearAll" class="btn btn-danger" data-dismiss="modal">Clear All</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
 
@@ -74,14 +111,15 @@
     </footer>
 
     <!-- Js -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
