@@ -77,7 +77,7 @@ app.get("/articles", function (req, res) {
 app.get("/createNotes", function (req, res) {
 
 
-    db.Notes.create(req.body)
+    db.Notes.create(req.body.text)
         .then(function (dbnotes) {
             console.log(dbnotes)
         })
@@ -98,15 +98,29 @@ app.get("/notes", function (req, res) {
 });
 
 
+app.post("/post", function(req, res){
+    console.log(req.body)
+    db.collection("Notes").insert(req.body, function(err,saved){
+        if(err){
+            console.log(err);
+        }
+        else {
+            res.send(saved);
+        }
+    })
+})
 
-// app.put("articles/:id", function(req,res){
-//     db.Article.update({
-//         title: req.body.title,
-//         link: req.body.link
-//     }).then(function(result){
-//         res.json(result)
-//     })
+// app.post("/postNotes", function(req,res){
+//     db.Notes.update({})
+//         .then(function(result){
+//             db.Notes.insertOne(req.body)
+//         })
+//         res.send(JSON.stringify(result))
 // })
+
+
+
+
 
 app.listen(PORT, function () {
     console.log("Running on port" + PORT)

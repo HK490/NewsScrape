@@ -6,6 +6,7 @@ $(document).ready(function () {
     let link = "";
     let result = "";
 
+   
 
 
     $.get("/articles", function (data) {
@@ -81,10 +82,6 @@ $(document).ready(function () {
             $(this).closest('form').remove();
         })
 
-
-
-
-
     });
 
 
@@ -98,6 +95,31 @@ $(document).ready(function () {
     $(".close").on("click", function () {
         $(".modal").hide();
         $("#scrapedArticleContent").empty();
+    })
+
+
+
+
+    
+
+    $.get("/notes", function(data){
+        console.log(data)
+    })
+
+    $("#saveArticle").on("click", function(){
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "/post",
+            data:{
+                body: $("#savedArticleContent").text(),
+                created: Date.now()
+            }
+        })
+        .then(function(data){
+            console.log(data)
+        })
     })
 
 
