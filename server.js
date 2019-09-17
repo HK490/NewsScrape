@@ -4,6 +4,7 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const db = require("./models");
 const app = express();
+
 const path = require("path")
 
 
@@ -22,6 +23,8 @@ app.use(express.static("public"));
 // app.get("/home", function (req, res) {
 //     res.sendFile(path.join(__dirname + "./public/index.html"))
 // })
+
+
 
 
 app.get("/scraped", function (req, res) {
@@ -55,11 +58,8 @@ app.get("/scraped", function (req, res) {
             });
 
         res.send("Success")
-
-
     });
 });
-
 
 app.get("/articles", function (req, res) {
     db.Article.find({})
@@ -68,6 +68,36 @@ app.get("/articles", function (req, res) {
             console.log(result)
         });
 });
+
+
+
+
+
+
+app.get("/createNotes", function (req, res) {
+
+
+    db.Notes.create(req.body)
+        .then(function (dbnotes) {
+            console.log(dbnotes)
+        })
+        .catch(function (err) {
+            console.log(err)
+        });
+
+    res.send("Notes")
+
+})
+
+app.get("/notes", function (req, res) {
+    db.Notes.find({})
+        .then(function (result) {
+            res.json(result)
+            console.log(result)
+        });
+});
+
+
 
 // app.put("articles/:id", function(req,res){
 //     db.Article.update({

@@ -38,26 +38,33 @@ $(document).ready(function () {
             result = link
 
             $("#listPopup").show();
-            $("#scrapedArticleContent").append(result)
+            $("#scrapedArticleContent").append(
+            `<form>
+                <div class="form-group">
+                  <label for="Title">${result}</label>
+                  <textarea class="form-control" id="comment" rows="3" placeholder="Comment Box" ></textarea>
+                </div>
+              </form>`
+
+            )
             console.log("++++++++++++++++++++")
             console.log(result)
         })
 
 
         $("#saveArticle").on("click", function () {
-
-
-
-            $("#savedArticleContent").append(`
-            <p id="deleteArticle"><i class="far fa-trash-alt"></i>  ${result}
-            <input type="comment" id="comment" class="form-control" placeholder="Leave Your Notes Here">
-            </p>
-            `)
-            console.log($("#deleteArticle"))
+            $("#savedArticleContent").append(
+                `<form>
+                <div class="form-group">
+                  <label for="Title"><i class="far fa-trash-alt"></i>${result}</label>
+                  <textarea class="form-control" id="comment" rows="3" placeholder="Comment Box" ></textarea>
+                </div>
+              </form>`
+                )
             $("#scrapedArticleContent").empty();
         })
 
-     
+
 
         // Nav Bar Saved Articles Popup
 
@@ -70,10 +77,8 @@ $(document).ready(function () {
             $("#savedPopup").hide();
         })
 
-        $("#savedArticleContent").attr("id")
-
-        $("#savedArticleContent").on("click", "p", function () {
-            $(this).remove();
+        $("#savedArticleContent").on("click", "label", function () {
+            $(this).closest('form').remove();
         })
 
 

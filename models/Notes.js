@@ -4,11 +4,7 @@ const Schema= mongoose.Schema;
 
 const NewNotes= new Schema({
 
-    comments: {
-        type: String,
-        trim: true
-        
-    },
+    body: String
 
 
 });

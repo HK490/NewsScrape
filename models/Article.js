@@ -14,7 +14,10 @@ const NewArticle= new Schema({
         type: String,
         // require: true,
         trim: true
-        
+    },
+    note: {
+        type:Schema.Types.ObjectId,
+        ref: "Note"
     }
 
 });
