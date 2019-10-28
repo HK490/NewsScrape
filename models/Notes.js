@@ -4,7 +4,11 @@ const Schema= mongoose.Schema;
 
 const NewNotes= new Schema({
 
-    body: String
+    body: String,
+    created: {
+        type: String,
+        default: Date.now
+    }
 
 
 });

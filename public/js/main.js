@@ -18,7 +18,7 @@ $(document).ready(function () {
         $("#scrapedTitle").empty();
 
         for (let i = 0; i < data.length; i++) {
-            $("#scrapedTitle").append(`<p class="link">${i + 1}. ${data[i].title}</p>` + `<br>`)
+            $("#scrapedTitle").append(`<p class="link" data-article-id="${data[i]._id}">${i + 1}. ${data[i].title}</p>` + `<br>`)
 
             scrapedUrl = "https://www.prevention.com" + data[i].link
 
@@ -39,6 +39,8 @@ $(document).ready(function () {
             result = link
 
             $("#listPopup").show();
+            $("#listPopup").data("articleId", $(this).attr("data-article-id"));
+
             $("#scrapedArticleContent").append(
             `<form>
                 <div class="form-group">
@@ -100,7 +102,7 @@ $(document).ready(function () {
 
 
 
-    
+
 
     $.get("/notes", function(data){
         console.log(data)
@@ -108,13 +110,14 @@ $(document).ready(function () {
 
     $("#saveArticle").on("click", function(){
 
+        const articleId = $("#listPopup").data("articleId");
+
         $.ajax({
             type: "POST",
             dataType: "json",
-            url: "/post",
+            url: "/articles/" + articleId,
             data:{
-                body: $("#savedArticleContent").text(),
-                created: Date.now()
+                body: $("#comment").val(),
             }
         })
         .then(function(data){

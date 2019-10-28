@@ -74,18 +74,20 @@ app.get("/articles", function (req, res) {
 
 
 
-app.get("/createNotes", function (req, res) {
+app.post("/articles/:id", function (req, res) {
 
 
-    db.Notes.create(req.body.text)
-        .then(function (dbnotes) {
-            console.log(dbnotes)
+    db.Notes.create(req.body)
+        .then(function (dbNote) {
+            return db.Article.findByIdAndUpdate(req.params.id, { $set: { saved: true, note: dbNote._id } });
+        })
+        .then(function () {
+            res.json({ message: "note created!" })
         })
         .catch(function (err) {
             console.log(err)
+            res.status(500).json({ err: err.message });
         });
-
-    res.send("Notes")
 
 })
 
@@ -96,19 +98,6 @@ app.get("/notes", function (req, res) {
             console.log(result)
         });
 });
-
-
-app.post("/post", function(req, res){
-    console.log(req.body)
-    db.collection("Notes").insert(req.body, function(err,saved){
-        if(err){
-            console.log(err);
-        }
-        else {
-            res.send(saved);
-        }
-    })
-})
 
 // app.post("/postNotes", function(req,res){
 //     db.Notes.update({})
